@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Blasty_bird
 {
-    internal class BlastyBird : Game<BlastyBird>
+    internal class BlastyBirdGame : Game<BlastyBirdGame>
     {
-        public BlastyBird() : base("blasty bird",1200, 600, Color.SkyBlue)
+        public BlastyBirdGame() : base("blasty bird",1200, 600, Color.SkyBlue)
         {
         }
     }

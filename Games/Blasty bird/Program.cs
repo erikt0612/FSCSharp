@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            new BlastyBird().Run();
+            new BlastyBirdGame().Run();
         }
     }
 }
