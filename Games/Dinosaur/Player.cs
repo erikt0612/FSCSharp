@@ -9,6 +9,7 @@ public class Player : VisibleGameObject
     #region Constructor
     public Player()
     {
+        PlayerHitbox = new Hitbox(new Vector2(-10, -10), new Vector2(10, 10));
         var texture = Raylib.LoadTexture("Resources/yoshi.png");
         Body = new Sprite(texture, 0.5f);
 
@@ -20,6 +21,9 @@ public class Player : VisibleGameObject
     #region Overrides
     public override void Update(float delta)
     {
+        TempPlayerHitbox.Pos = Location + PlayerHitbox.Pos;
+        TempPlayerHitbox.BottomCorner = Location + PlayerHitbox.BottomCorner;
+
         if (Game.KeyboardManager.IsKeyPressed(KeyboardKey.Space) && (int)Location.Y == (int)GroundZeroY)
         {
             VerticalV = -500;
@@ -39,5 +43,8 @@ public class Player : VisibleGameObject
     public float GroundZeroY { get; set; }
     public Vector2 Location { get; set; }
     public Sprite Body { get; set; }
+
+    public Hitbox PlayerHitbox { get; set; } 
+    public Hitbox TempPlayerHitbox { get; set; } = new Hitbox(new Vector2(0,0), new Vector2(0, 0));
     #endregion
 }

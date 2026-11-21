@@ -18,7 +18,12 @@ public class DinosaurGame : Game<DinosaurGame>
         GameObjects.Add(Ground);
 
         Player = new Player();
+        Player.Priority = 100;
         GameObjects.Add(Player);
+
+        PlayerHit = Player.TempPlayerHitbox;
+        Player.TempPlayerHitbox.Priority = 90;
+        GameObjects.Add(Player.TempPlayerHitbox);
 
         GameObjects.Add(new CactusGenerator());
     }
@@ -27,6 +32,8 @@ public class DinosaurGame : Game<DinosaurGame>
     #region Properties
     public Player Player { get; }
     public Ground Ground { get; }
+
+    public Hitbox PlayerHit { get; }
     #endregion
 }
 

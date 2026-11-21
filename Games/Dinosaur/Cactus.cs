@@ -9,6 +9,7 @@ public class Cactus : VisibleGameObject
     #region Constructors
     public Cactus()
     {
+        CactusHitbox = new Hitbox(new Vector2(-10, -10), new Vector2(10, 10));
         var texture = Raylib.LoadTexture("Resources/cactus.png");
         Body = new Sprite(texture, 0.5f);
 
@@ -19,8 +20,11 @@ public class Cactus : VisibleGameObject
     #region Overrides
     public override void Update(float delta)
     {
+        TempCactusHitbox.Pos = Location + CactusHitbox.Pos;
+        TempCactusHitbox.BottomCorner = Location + CactusHitbox.BottomCorner;
+
         var player = DinosaurGame.Current.Player;
-        if (Body.IsCollidingByPixelAtLocation(Location, player.Body, player.Location))
+        if (TempCactusHitbox.IsColliding(player.TempPlayerHitbox))
         {
             throw new GameOverException("You touched a cactus! You suck!");
         }
@@ -37,5 +41,7 @@ public class Cactus : VisibleGameObject
     #region Properties
     public Vector2 Location { get; set; }
     public Sprite Body { get; set; }
+    Hitbox CactusHitbox  { get; set; }
+    Hitbox TempCactusHitbox { get; set; } = new Hitbox(new Vector2(0, 0), new Vector2(0, 0));
     #endregion
 }

@@ -173,7 +173,6 @@ public abstract class SpriteBase : IDisposable
             Raylib.UnloadImage(imgB);
         }
     }
-
     public virtual bool IsCollidingAtLocation(Vector2 myLocation, Vector2 otherLocation)
     {
         if (Rotation != 0) throw new NotImplementedException("Collision detection is not currently implemented for rotated sprites.");
